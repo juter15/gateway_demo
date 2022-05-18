@@ -1,0 +1,28 @@
+server:
+  port: ${SERVER_PORT:9393}
+
+
+spring:
+  application:
+    name: GATEWAY-DEMO
+
+feign:
+  hystrix:
+    enabled: true
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: basic
+
+
+# Json Web Token 설정
+jwt:
+  secret: ationSecret
+  expire-seconds: ${ACCESS_TOKEN_EXPIRE_SEC:300} # default 5 minutes
+  refresh:
+    expire-minutes: ${REFRESH_TOKEN_EXPIRE_MIN:10} # default 10 minutes
+
+service:
+  user-service: ${_USER_SERVICE_URL:http://localhost:9494}
